@@ -166,24 +166,24 @@ form.addEventListener('submit', (e) => {
     }
 
     // We only want to enforce cc validation if they actually chose to pay that way.
-    let isCCValid = true;
+    let isCcValid = true;
     let isZipValid = true;
-    let isCVVValid = true;
+    let isCvvValid = true;
 
     if (paymentMenu.value === 'credit-card') {
-        isCCValid = isValidCCNum(ccNum.value);
+        isCcValid = isValidCCNum(ccNum.value);
         isZipValid = isValidZipCode(zipCode.value);
-        isCVVValid = isValidCVV(cvv.value);
+        isCvvValid = isValidCVV(cvv.value);
 
-        validateField(ccNum, isCCValid);
+        validateField(ccNum, isCcValid);
         validateField(zipCode, isZipValid);
-        validateField(cvv, isCVVValid); 
+        validateField(cvv, isCvvValid); 
     }
 
 // If any of our data checks fail, we prevent form submission
-    if (!isNameValid || !isEmailValid || !isActivitiesSelected || !isCcValid || !isZipValid || !isCvvValid) {
-        e.preventDefault();
-    }
+    if (!isNameValid || !isEmailValid || !isActivitiesValid || !isCcValid || !isZipValid || !isCvvValid) {
+    e.preventDefault(); 
+  }
 });
 
 // 7. "Accessibility" Section
