@@ -137,32 +137,33 @@ function validateField(element, isValid) {
 
 // The submit listener acts as gatekeeper so that no bad data gets through.
 form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Temp check
     const isNameValid = isValidName(nameInput.value);
     const isEmailValid = isValidEmail(emailInput.value);
 
     // Making sure at least one activity is selected
     const activitiesCheckboxes = document.querySelectorAll('#activities input');
-    let isActivitySelected = false;
-    for (let i = 0; i < activitiesCheckboxes.length; i++) {
-        if (activitiesCheckboxes[i].checked) {
-            isActivitySelected = true;
-            break;
+    let isActivitiesValid = false;
+  for (let i = 0; i < activitiesCheckboxes.length; i++) {
+    if (activitiesCheckboxes[i].checked) {
+      isActivitiesValid = true;
+      break;
         }
     }
 
     validateField(nameInput, isNameValid);
     validateField(emailInput, isEmailValid);
  
-    const acttivitiesBox = document.getElementById('activities-box');
+    const activitiesBox = document.getElementById('activities-box');
     const activitiesHint = document.getElementById('activities-hint');
-    if (!isActivitySelected) {
-        activitiesBox.classList.add('not-valid');
-        activitiesBox.classList.remove('valid');
-        activitiesHint.style.display = 'block';
-    } else {
-        activitiesbox.classList.add('valid');
-        activitiesbox.classList.remove('not-valid');
-        activitiesHint.style.display = 'none';
+   if (!isActivitiesValid) {
+    activitiesBox.classList.add('not-valid');
+    activitiesBox.classList.remove('valid');
+    activitiesHint.style.display = 'block'; 
+  } else {
+    activitiesBox.classList.add('valid');
+    activitiesBox.classList.remove('not-valid');
+    activitiesHint.style.display = 'none';
     }
 
     // We only want to enforce cc validation if they actually chose to pay that way.
