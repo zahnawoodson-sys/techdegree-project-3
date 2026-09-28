@@ -137,7 +137,6 @@ function validateField(element, isValid) {
 
 // The submit listener acts as gatekeeper so that no bad data gets through.
 form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Temp check
     const isNameValid = isValidName(nameInput.value);
     const isEmailValid = isValidEmail(emailInput.value);
 
